@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class ItemController{
+public class ItemController {
 
     @Autowired
     ItemService itemService;
@@ -37,6 +37,4 @@ public class ItemController{
     void deleteItem() {
         itemService.delete((long) 4);
     }
-
-
 }
