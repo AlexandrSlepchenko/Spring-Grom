@@ -1,4 +1,4 @@
-package com.Lesson1.HW1;
+package com.Lesson2.HW1;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +17,10 @@ public class Controller {
     @Autowired
     Service service;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/orderSave", produces = "text/plain")
+    @RequestMapping(method = RequestMethod.GET, value = "/HW1Save", produces = "text/plain")
     public @ResponseBody
     String test() {
-        return "ok";
+        return "123";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/HW1", produces = "text/plain")

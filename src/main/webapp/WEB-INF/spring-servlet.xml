@@ -9,12 +9,16 @@
 
     <context:component-scan base-package = "com"/>
 
-    <bean id="orederService" class="com.Lesson1.OrderService"/>
+    <bean id="orderService" class="com.Lesson1.OrderService"/>
     <bean id="orderDAO" class="com.Lesson1.OrderDAO"/>
-    <bean id="route" class="com.Lesson1.HW1.Route"/>
-    <bean id="step" class="com.Lesson1.HW1.Step"/>
-    <bean id="service" class="com.Lesson1.HW1.Service"/>
 
+    <bean id="route" class="com.Lesson2.HW1.Route"/>
+    <bean id="step" class="com.Lesson2.HW1.Step"/>
+    <bean id="service" class="com.Lesson2.HW1.Service"/>
 
+<!--    <bean id="item" class="com.Lesson2.HW2.Item"/>-->
+    <bean id="itemDAO" class="com.Lesson2.HW2.ItemDAO"/>
+    <bean id="itemService" class="com.Lesson2.HW2.ItemService"/>
 
 </beans>
+

@@ -1,4 +1,4 @@
-package com.Lesson1.HW1;
+package com.Lesson2.HW1;
 
 import org.springframework.stereotype.Service;
 
