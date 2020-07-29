@@ -1,16 +1,28 @@
 package com.Lesson3.HW.DAO;
 
+import com.Lesson3.HW.Service.FileService;
+import com.Lesson3.HW.Service.StorageService;
 import com.Lesson3.HW.utils.Util;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class GeneralRepository<T> implements REPO<T>{
 
     private Class<T> clazz;
 
     public void setClass(Class<T> t) {
         this.clazz = t;
+    }
+
+    Util util;
+
+    @Autowired
+    public GeneralRepository(Util util) {
+        this.util = util;
     }
 
     @Override

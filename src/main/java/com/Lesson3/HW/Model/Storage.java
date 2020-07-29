@@ -1,13 +1,14 @@
 package com.Lesson3.HW.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity
 @Table(name = "STORAGE")
 public class Storage {
     public long id;
-    private String[] formatsSupported;
+    private String formatsSupported;
     private String storageCountry;
     private long storageMaxSize;
 
@@ -15,24 +16,28 @@ public class Storage {
     }
 
     @Id
-    @SequenceGenerator(name = "S_SEQ" , sequenceName = "STORAGE_SEQ", allocationSize = 1)
+    @SequenceGenerator(name = "S_SEQ", sequenceName = "STORAGE_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "S_SEQ")
     @Column(name = "ID")
+    @JsonProperty("id")
     public long getId() {
         return id;
     }
 
     @Column(name = "FORMAT_SUPPORTED")
-    public String[] getFormatsSupported() {
+    @JsonProperty("formatsSupported")
+    public String getFormatsSupported() {
         return formatsSupported;
     }
 
     @Column(name = "STORAGE_COUNTRY")
+    @JsonProperty("storageCountry")
     public String getStorageCountry() {
         return storageCountry;
     }
 
     @Column(name = "MAX_SIZE")
+    @JsonProperty("storageMaxSize")
     public long getStorageMaxSize() {
         return storageMaxSize;
     }
@@ -41,7 +46,7 @@ public class Storage {
         this.id = id;
     }
 
-    public void setFormatsSupported(String[] formatsSupported) {
+    public void setFormatsSupported(String formatsSupported) {
         this.formatsSupported = formatsSupported;
     }
 
@@ -53,25 +58,25 @@ public class Storage {
         this.storageMaxSize = storageMaxSize;
     }
 
-    public String formatsSupportedToString() {
-        String formats = Arrays.toString(formatsSupported);
-        return formats.substring(1, formats.length() - 2);
-    }
-
-    public boolean isFormatSupported(String format) {
-        for (String f : formatsSupported) {
-            if (f.equals(format))
-                return true;
-        }
-
-        return false;
-    }
+//    public String formatsSupportedToString() {
+//        String formats = Arrays.toString(formatsSupported);
+//        return formats.substring(1, formats.length() - 2);
+//    }
+//
+//    public boolean isFormatSupported(String format) {
+//        for (String f : formatsSupported) {
+//            if (f.equals(format))
+//                return true;
+//        }
+//
+//        return false;
+//    }
 
     @Override
     public String toString() {
         return "Storage{" +
                 "id=" + id +
-                ", formatsSupported=" + Arrays.toString(formatsSupported) +
+                ", formatsSupported=" + formatsSupported +
                 ", storageCountry='" + storageCountry + '\'' +
                 ", storageMaxSize='" + storageMaxSize + '\'' +
                 '}';

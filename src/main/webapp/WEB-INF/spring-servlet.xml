@@ -19,11 +19,12 @@
     <bean id="itemDAO" class="com.Lesson2.HW2.ItemDAO"/>
     <bean id="itemService" class="com.Lesson2.HW2.ItemService"/>
 
-    <bean id="GeneralRepository" class="com.Lesson3.HW.DAO.GeneralRepository"/>
-    <bean id="FileDAO" class="com.Lesson3.HW.DAO.FileDAO"/>
-    <bean id="StorageDAO" class="com.Lesson3.HW.DAO.StorageDAO"/>
-    <bean id="FileService" class="com.Lesson3.HW.Service.FileService"/>
-    <bean id="Util" class="com.Lesson3.HW.utils.Util"/>
+    <bean id="generalRepository" class="com.Lesson3.HW.DAO.GeneralRepository"/>
+    <bean id="fileDAO" class="com.Lesson3.HW.DAO.FileDAO"/>
+    <bean id="storageDAO" class="com.Lesson3.HW.DAO.StorageDAO"/>
+    <bean id="fileService" class="com.Lesson3.HW.Service.FileService"/>
+    <bean id="storageService" class="com.Lesson3.HW.Service.StorageService"/>
+    <bean id="util" class="com.Lesson3.HW.utils.Util"/>
 
 </beans>
 

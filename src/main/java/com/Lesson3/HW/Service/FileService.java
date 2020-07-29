@@ -7,13 +7,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class FileService implements Service<File, Storage> {
+@org.springframework.stereotype.Service
+public class FileService implements Service<File> {
 
     FileDAO fileDAO;
 
     @Autowired
     public FileService(FileDAO fileDAO) {
         this.fileDAO = fileDAO;
+    }
+
+    public File save(File file) {
+        return fileDAO.save(file);
+    }
+
+    public File update(File file) {
+        return fileDAO.update(file);
+    }
+
+    public void deleteById(long id) {
+        fileDAO.delete(id);
+    }
+
+    public File findById(long id) {
+        return fileDAO.findById(id);
     }
 
     public File put(Storage storage, File file) {
@@ -50,7 +67,7 @@ public class FileService implements Service<File, Storage> {
     }
 
     private boolean validateFormat(Storage storage, File file) {
-        for (String format : storage.getFormatsSupported()) {
+        for (String format : storage.getFormatsSupported().split(",")) {
             if (file.getFormat().equals(format)) {
                 return true;
             }
