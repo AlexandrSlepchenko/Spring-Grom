@@ -2,7 +2,7 @@ package com.Lesson3.HW.DAO;
 
 import com.Lesson3.HW.Model.File;
 import com.Lesson3.HW.Model.Storage;
-import com.Lesson3.HW.utils.Util;
+import com.Lesson3.HW.Utils.Util;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;

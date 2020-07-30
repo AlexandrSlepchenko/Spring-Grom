@@ -1,4 +1,4 @@
-package com.Lesson3.HW.utils;
+package com.Lesson3.HW.Utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

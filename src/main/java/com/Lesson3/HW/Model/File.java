@@ -44,8 +44,8 @@ public class File {
         return size;
     }
 
-    @Column(name = "STORAGE")
-    @ManyToOne
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "STORAGE", nullable = false)
     @JsonProperty("storage")
     public Storage getStorage() {
         return storage;

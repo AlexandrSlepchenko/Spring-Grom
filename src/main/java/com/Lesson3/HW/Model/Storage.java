@@ -15,6 +15,13 @@ public class Storage {
     public Storage() {
     }
 
+    public Storage(long id, String formatsSupported, String storageCountry, long storageMaxSize) {
+        this.id = id;
+        this.formatsSupported = formatsSupported;
+        this.storageCountry = storageCountry;
+        this.storageMaxSize = storageMaxSize;
+    }
+
     @Id
     @SequenceGenerator(name = "S_SEQ", sequenceName = "STORAGE_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "S_SEQ")

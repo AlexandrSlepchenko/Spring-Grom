@@ -1,8 +1,7 @@
 package com.Lesson3.HW.DAO;
 
-import com.Lesson3.HW.Service.FileService;
-import com.Lesson3.HW.Service.StorageService;
-import com.Lesson3.HW.utils.Util;
+import com.Lesson2.HW2.Item;
+import com.Lesson3.HW.Utils.Util;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -12,10 +11,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class GeneralRepository<T> implements REPO<T>{
 
-    private Class<T> clazz;
+    private Class<T> tClass;
 
-    public void setClass(Class<T> t) {
-        this.clazz = t;
+    public void setClass(Class<T> type) {
+        this.tClass = type;
+    }
+
+    public Class<T> getMyType() {
+        return this.tClass;
     }
 
     Util util;
@@ -57,7 +60,7 @@ public class GeneralRepository<T> implements REPO<T>{
         try (Session session = Util.createSessionFactory().openSession()) {
             Transaction tr = session.getTransaction();
             tr.begin();
-            session.delete(session.get(clazz, id));
+            session.delete(session.get(getMyType(), id));
             tr.commit();
         } catch (HibernateException e) {
             System.err.println(e.getMessage());
@@ -68,7 +71,7 @@ public class GeneralRepository<T> implements REPO<T>{
     public T findById(long id) {
         try (Session session = Util.createSessionFactory().openSession()) {
 
-            return session.get(clazz, id);
+            return session.get(getMyType(), id);
 
         } catch (HibernateException e) {
             System.err.println(e.getMessage());

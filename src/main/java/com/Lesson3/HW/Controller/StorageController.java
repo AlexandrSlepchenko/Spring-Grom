@@ -1,7 +1,9 @@
 package com.Lesson3.HW.Controller;
 
+import com.Lesson3.HW.DAO.StorageDAO;
 import com.Lesson3.HW.Model.Storage;
 import com.Lesson3.HW.Service.StorageService;
+import com.Lesson3.HW.Utils.Util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,7 @@ public class StorageController {
     public @ResponseBody
     void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
-            resp.getWriter().println(storageService.findById(Long.parseLong(req.getParameter("id"))).toString());
+            resp.getWriter().println(storageService.findById(Long.valueOf(req.getParameter("id"))).toString());
         } catch (Exception e) {
             resp.getWriter().println(e.getMessage());
         }
