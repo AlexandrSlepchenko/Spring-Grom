@@ -1,9 +1,9 @@
 package com.Lesson3.HW.Model;
 
-import com.Lesson3.HW.Model.Storage;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "FILES")
@@ -15,6 +15,14 @@ public class File {
     public Storage storage;
 
     public File() {
+    }
+
+    public File(long id, String name, String format, long size, Storage storage) {
+        this.id = id;
+        this.name = name;
+        this.format = format;
+        this.size = size;
+        this.storage = storage;
     }
 
     @Id
@@ -45,7 +53,7 @@ public class File {
     }
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "STORAGE", nullable = false)
+    @JoinColumn(name = "STORAGE")
     @JsonProperty("storage")
     public Storage getStorage() {
         return storage;
@@ -69,6 +77,25 @@ public class File {
 
     public void setStorage(Storage storage) {
         this.storage = storage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        File file = (File) o;
+        return id == file.id &&
+                size == file.size &&
+                name.equals(file.name) &&
+                format.equals(file.format) &&
+                storage.equals(file.storage);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 
     @Override

@@ -20,7 +20,7 @@
     <bean id="itemService" class="com.Lesson2.HW2.ItemService"/>
 
     <bean id="generalRepository" class="com.Lesson3.HW.DAO.GeneralRepository"/>
-    <bean id="fileDAO" class="com.Lesson3.HW.DAO.FileDAO"/>
+    <bean id="fileDAO" class="com.Lesson3.HW.DAO.FileDAOImpl"/>
     <bean id="storageDAO" class="com.Lesson3.HW.DAO.StorageDAO"/>
     <bean id="fileService" class="com.Lesson3.HW.Service.FileService"/>
     <bean id="storageService" class="com.Lesson3.HW.Service.StorageService"/>

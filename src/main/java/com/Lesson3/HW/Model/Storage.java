@@ -3,6 +3,7 @@ package com.Lesson3.HW.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "STORAGE")
@@ -65,19 +66,14 @@ public class Storage {
         this.storageMaxSize = storageMaxSize;
     }
 
-//    public String formatsSupportedToString() {
-//        String formats = Arrays.toString(formatsSupported);
-//        return formats.substring(1, formats.length() - 2);
-//    }
-//
-//    public boolean isFormatSupported(String format) {
-//        for (String f : formatsSupported) {
-//            if (f.equals(format))
-//                return true;
-//        }
-//
-//        return false;
-//    }
+    public boolean isFormatSupported(String format) {
+        for (String f : formatsSupported.split(",")) {
+            if (f.equals(format))
+                return true;
+        }
+
+        return false;
+    }
 
     @Override
     public String toString() {

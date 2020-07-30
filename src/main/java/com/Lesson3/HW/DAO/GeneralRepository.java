@@ -1,6 +1,5 @@
 package com.Lesson3.HW.DAO;
 
-import com.Lesson2.HW2.Item;
 import com.Lesson3.HW.Utils.Util;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -11,10 +10,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class GeneralRepository<T> implements REPO<T>{
 
-    private Class<T> tClass;
+    private Class tClass;
 
-    public void setClass(Class<T> type) {
-        this.tClass = type;
+    public void setClass(Class tClass) {
+        this.tClass = tClass;
     }
 
     public Class<T> getMyType() {

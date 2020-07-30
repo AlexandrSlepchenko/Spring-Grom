@@ -32,10 +32,27 @@ public class FileController {
         Storage storage;
         File file;
         try (BufferedReader br = req.getReader()) {
+
+//            Long list = new ObjectMapper().readValue(br, Long.class);
+
+            Long[] array = new Long[2];
+            String line = br.readLine(); // to read multiple integers line
+            String[] strings = line.trim().split("\\s+");
+            for (int i = 0; i < array.length-1; i++) {
+                array[i] = Long.parseLong(strings[i]);
+            }
+
+            storage = storageService.findById(array[0]);
+            file = fileService.findById(array[1]);
+
+
             String[] textOfNumbers = br.readLine().split(",");
-            file = fileService.findById(Long.parseLong(textOfNumbers[1]));
-            storage = storageService.findById(Long.parseLong(textOfNumbers[0]));
+
+//            storage = storageService.findById(Long.parseLong(textOfNumbers[0]));
+//            file = fileService.findById(Long.parseLong(textOfNumbers[1]));
+
             fileService.put(storage, file);
+
         } catch (Exception e) {
             resp.getWriter().println(e.getMessage());
         }
@@ -47,9 +64,25 @@ public class FileController {
         Storage storageFrom;
         Storage storageTo;
         try (BufferedReader br = req.getReader()) {
+
+            Long[] array = new Long[2];
+            String line = br.readLine(); // to read multiple integers line
+            String[] strings = line.trim().split("\\s+");
+            for (int i = 0; i < array.length-1; i++) {
+                array[i] = Long.parseLong(strings[i]);
+            }
+
+            storageFrom = storageService.findById(array[0]);
+            storageTo = storageService.findById(array[1]);
+
+
             String[] textOfNumbers = br.readLine().split(",");
-            storageFrom = storageService.findById(Long.parseLong(textOfNumbers[0]));
-            storageTo = storageService.findById(Long.parseLong(textOfNumbers[1]));
+
+//            String[] textOfNumbers = br.readLine().split(",");
+//
+//            storageFrom = storageService.findById(Long.parseLong(textOfNumbers[0]));
+//            storageTo = storageService.findById(Long.parseLong(textOfNumbers[1]));
+
             fileService.transferAll(storageFrom, storageTo);
         } catch (Exception e) {
             resp.getWriter().println(e.getMessage());
@@ -61,8 +94,11 @@ public class FileController {
     void transferFile(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Storage storageTo;
         try (BufferedReader br = req.getReader()) {
+
             String[] textOfNumbers = br.readLine().split(",");
+
             storageTo = storageService.findById(Long.parseLong(textOfNumbers[0]));
+
             fileService.transferFile(storageTo, Long.parseLong(textOfNumbers[1]));
         } catch (Exception e) {
             resp.getWriter().println(e.getMessage());
@@ -75,9 +111,12 @@ public class FileController {
         Storage storage;
         File file;
         try (BufferedReader br = req.getReader()) {
+
             String[] textOfNumbers = br.readLine().split(",");
+
             file = fileService.findById(Long.parseLong(textOfNumbers[1]));
             storage = storageService.findById(Long.parseLong(textOfNumbers[0]));
+
             fileService.delete(storage, file);
         } catch (Exception e) {
             resp.getWriter().println(e.getMessage());
