@@ -1,5 +1,6 @@
 package com.Lesson3.HW.Controller;
 
+import com.Lesson3.HW.Model.ArrayWrapper;
 import com.Lesson3.HW.Model.File;
 import com.Lesson3.HW.Model.Storage;
 import com.Lesson3.HW.Service.FileService;
@@ -29,27 +30,12 @@ public class FileController {
     @RequestMapping(method = RequestMethod.PUT, value = "put", produces = "text/plain")
     public @ResponseBody
     void put(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Storage storage;
-        File file;
         try (BufferedReader br = req.getReader()) {
 
-//            Long list = new ObjectMapper().readValue(br, Long.class);
-
-            Long[] array = new Long[2];
-            String line = br.readLine(); // to read multiple integers line
-            String[] strings = line.trim().split("\\s+");
-            for (int i = 0; i < array.length-1; i++) {
-                array[i] = Long.parseLong(strings[i]);
-            }
-
-            storage = storageService.findById(array[0]);
-            file = fileService.findById(array[1]);
-
-
-            String[] textOfNumbers = br.readLine().split(",");
-
-//            storage = storageService.findById(Long.parseLong(textOfNumbers[0]));
-//            file = fileService.findById(Long.parseLong(textOfNumbers[1]));
+            ArrayWrapper wrapper = arrayMapper(br);
+            int[] array = wrapper.getArray();
+            Storage storage = storageService.findById(array[0]);
+            File file = fileService.findById(array[1]);
 
             fileService.put(storage, file);
 
@@ -61,27 +47,12 @@ public class FileController {
     @RequestMapping(method = RequestMethod.GET, value = "transferAll", produces = "text/plain")
     public @ResponseBody
     void transferAll(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Storage storageFrom;
-        Storage storageTo;
         try (BufferedReader br = req.getReader()) {
 
-            Long[] array = new Long[2];
-            String line = br.readLine(); // to read multiple integers line
-            String[] strings = line.trim().split("\\s+");
-            for (int i = 0; i < array.length-1; i++) {
-                array[i] = Long.parseLong(strings[i]);
-            }
-
-            storageFrom = storageService.findById(array[0]);
-            storageTo = storageService.findById(array[1]);
-
-
-            String[] textOfNumbers = br.readLine().split(",");
-
-//            String[] textOfNumbers = br.readLine().split(",");
-//
-//            storageFrom = storageService.findById(Long.parseLong(textOfNumbers[0]));
-//            storageTo = storageService.findById(Long.parseLong(textOfNumbers[1]));
+            ArrayWrapper wrapper = arrayMapper(br);
+            int[] array = wrapper.getArray();
+            Storage storageFrom = storageService.findById(array[0]);
+            Storage storageTo = storageService.findById(array[1]);
 
             fileService.transferAll(storageFrom, storageTo);
         } catch (Exception e) {
@@ -92,14 +63,14 @@ public class FileController {
     @RequestMapping(method = RequestMethod.GET, value = "/transferFile", produces = "text/plain")
     public @ResponseBody
     void transferFile(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Storage storageTo;
         try (BufferedReader br = req.getReader()) {
 
-            String[] textOfNumbers = br.readLine().split(",");
+            ArrayWrapper wrapper = arrayMapper(br);
+            int[] array = wrapper.getArray();
+            Storage storage = storageService.findById(array[0]);
+            Long fileId = Long.valueOf((array[1]));
 
-            storageTo = storageService.findById(Long.parseLong(textOfNumbers[0]));
-
-            fileService.transferFile(storageTo, Long.parseLong(textOfNumbers[1]));
+            fileService.transferFile(storage, fileId);
         } catch (Exception e) {
             resp.getWriter().println(e.getMessage());
         }
@@ -108,14 +79,12 @@ public class FileController {
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete", produces = "text/plain")
     public @ResponseBody
     void delete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Storage storage;
-        File file;
         try (BufferedReader br = req.getReader()) {
 
-            String[] textOfNumbers = br.readLine().split(",");
-
-            file = fileService.findById(Long.parseLong(textOfNumbers[1]));
-            storage = storageService.findById(Long.parseLong(textOfNumbers[0]));
+            ArrayWrapper wrapper = arrayMapper(br);
+            int[] array = wrapper.getArray();
+            Storage storage = storageService.findById(array[0]);
+            File file = fileService.findById(array[1]);
 
             fileService.delete(storage, file);
         } catch (Exception e) {
@@ -167,4 +136,10 @@ public class FileController {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(br, File.class);
     }
+
+    public ArrayWrapper arrayMapper(BufferedReader br) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(br, ArrayWrapper.class);
+    }
+
 }

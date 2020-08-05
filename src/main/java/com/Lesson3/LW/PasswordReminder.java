@@ -1,4 +1,4 @@
-package com.Lesson3;
+package com.Lesson3.LW;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +11,7 @@ public class PasswordReminder {
 //        this.DbConnector = DbConnector;
 //    }
 
-    private DbConnector DbConnector;
+    private com.Lesson3.LW.DbConnector DbConnector;
 
     @Autowired // - Constructor injection
     public PasswordReminder(DbConnector DbConnector) {
@@ -23,7 +23,7 @@ public class PasswordReminder {
     }
 
 //    @Autowired      - Setter injection
-//    public void setDbConnector(com.Lesson3.DbConnector dbConnector) {
+//    public void setDbConnector(com.Lesson3.LW.DbConnector dbConnector) {
 //        DbConnector = dbConnector;
 //    }
 }

@@ -3,7 +3,6 @@ package com.Lesson3.HW.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "FILES")
