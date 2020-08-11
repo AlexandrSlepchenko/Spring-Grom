@@ -16,7 +16,7 @@ import java.io.Reader;
 @Controller
 public class ItemController {
 
-    ItemService itemService;
+    private ItemService itemService;
 
     @Autowired
     public ItemController(ItemService itemService){

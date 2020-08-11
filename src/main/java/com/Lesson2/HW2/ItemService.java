@@ -8,8 +8,12 @@ import java.util.List;
 @Service
 public class ItemService {
 
+    private ItemDAO itemDAO;
+
     @Autowired
-    ItemDAO itemDAO;
+    public ItemService(ItemDAO itemDAO) {
+        this.itemDAO = itemDAO;
+    }
 
     public Item save(Item item) {
         return itemDAO.save(item);

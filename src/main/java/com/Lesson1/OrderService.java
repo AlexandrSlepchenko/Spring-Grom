@@ -1,7 +1,9 @@
 package com.Lesson1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderService {
     private int[] ordersIds = new int[5];
 

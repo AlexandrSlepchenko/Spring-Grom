@@ -1,7 +1,10 @@
 package com.Lesson2.HW1;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component
 public class Route {
     private String id;
     private List steps;

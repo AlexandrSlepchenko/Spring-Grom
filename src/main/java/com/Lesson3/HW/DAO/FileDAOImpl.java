@@ -13,7 +13,6 @@ import java.util.List;
 
 @Repository
 public class FileDAOImpl extends GeneralRepository<File> implements FileDAO{
-    Util util;
 
     @Autowired
     public FileDAOImpl(Util util) {
