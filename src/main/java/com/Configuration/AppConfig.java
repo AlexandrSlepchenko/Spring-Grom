@@ -25,11 +25,10 @@ public class AppConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[]{"com"});
+        em.setPackagesToScan("com");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-//        em.setJpaProperties(additionalProperties());
 
         return em;
     }
@@ -44,22 +43,10 @@ public class AppConfig {
         return dataSource;
     }
 
-//    @Bean
-//    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-//        return new PersistenceExceptionTranslationPostProcessor();
-//    }
-
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
     }
-
-//    @Bean
-//    public Properties additionalProperties() {
-//        Properties properties = new Properties();
-//        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-//        return properties;
-//    }
 }

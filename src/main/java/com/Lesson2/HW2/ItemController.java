@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
 
 @Controller
 public class ItemController {
@@ -19,16 +18,16 @@ public class ItemController {
     private ItemService itemService;
 
     @Autowired
-    public ItemController(ItemService itemService){
+    public ItemController(ItemService itemService) {
         this.itemService = itemService;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "GetItem", produces = "text/plain")
     public @ResponseBody
-    void doGet (HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
             resp.getWriter().println(itemService.findById(Long.valueOf(req.getParameter("id"))).toString());
-        }catch (Exception e){
+        } catch (Exception e) {
             resp.getWriter().println(e.getMessage());
         }
     }
