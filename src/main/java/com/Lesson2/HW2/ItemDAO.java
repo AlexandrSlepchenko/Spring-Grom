@@ -1,12 +1,14 @@
 package com.Lesson2.HW2;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@Transactional
 public class ItemDAO {
 
     @PersistenceContext

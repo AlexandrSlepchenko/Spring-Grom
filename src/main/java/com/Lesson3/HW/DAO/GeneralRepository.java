@@ -41,6 +41,5 @@ public class GeneralRepository<T> implements REPO<T> {
     @Override
     public T findById(long id) {
         return entityManager.find(getMyType(), id);
-
     }
 }

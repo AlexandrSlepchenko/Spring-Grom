@@ -96,11 +96,21 @@ public class FileController {
     public @ResponseBody
     void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
-            resp.getWriter().println(fileService.findById(Long.parseLong(req.getParameter("id"))).toString());
+            resp.getWriter().println(fileService.findById(Long.valueOf(req.getParameter("id"))).toString());
         } catch (Exception e) {
             resp.getWriter().println(e.getMessage());
         }
     }
+
+//    @RequestMapping(method = RequestMethod.GET, value = "GetItem", produces = "text/plain")
+//    public @ResponseBody
+//    void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+//        try {
+//            resp.getWriter().println(itemService.findById(Long.valueOf(req.getParameter("id"))).toString());
+//        } catch (Exception e) {
+//            resp.getWriter().println(e.getMessage());
+//        }
+//    }
 
     @RequestMapping(method = RequestMethod.POST, value = "PostFile", produces = "text/plain")
     public @ResponseBody
