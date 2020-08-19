@@ -34,7 +34,7 @@ public class FileDAOImpl extends GeneralRepository<File> implements FileDAO {
 
     @Override
     public List<File> getAllFilesFromStorage(Storage storage) {
-        return entityManager.createNativeQuery("SELECT * FROM FILES WHERE STORAGE =storage", File.class).
-                setParameter("STORAGE", "storage").getResultList();
+        Query query = entityManager.createQuery("SELECT fi FROM File fi WHERE fi.storage =:storage");
+        return query.setParameter("storage", storage).getResultList();
     }
 }
