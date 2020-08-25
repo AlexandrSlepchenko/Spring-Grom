@@ -1,10 +1,13 @@
 package com.Lesson2.HW2;
 
+import com.Lesson3.HW.Model.File;
+import com.Lesson3.HW.Model.Storage;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -34,7 +37,7 @@ public class ItemDAO {
     }
 
     public List getAllItems() {
-        List<Item> items = entityManager.createNativeQuery("SELECT * FROM ITEM", Item.class).getResultList();
-        return items;
+        Query query = entityManager.createQuery("SELECT i FROM Item i", Item.class);
+        return query.getResultList();
     }
 }
