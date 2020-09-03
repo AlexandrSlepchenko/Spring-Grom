@@ -1,22 +1,15 @@
 package com.Lesson2.HW2;
 
-import com.Lesson3.HW.Model.File;
-import com.Lesson3.HW.Model.Storage;
+import com.MainDAO;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
 @Repository
 @Transactional
-public class ItemDAO {
-
-    @PersistenceContext
-    private EntityManager entityManager;
-
+public class ItemDAO extends MainDAO {
 
     public Item save(Item item) {
         entityManager.persist(item);
@@ -29,7 +22,7 @@ public class ItemDAO {
     }
 
     public void delete(Long id) {
-        entityManager.detach(findById(id));
+        entityManager.remove(findById(id));
     }
 
     public Item findById(Long id) {

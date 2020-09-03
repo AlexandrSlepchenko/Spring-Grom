@@ -16,14 +16,6 @@ public class File {
     public File() {
     }
 
-    public File(long id, String name, String format, long size, Storage storage) {
-        this.id = id;
-        this.name = name;
-        this.format = format;
-        this.size = size;
-        this.storage = storage;
-    }
-
     @Id
     @SequenceGenerator(name = "F_SEQ", sequenceName = "FILE_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "F_SEQ")
@@ -34,26 +26,22 @@ public class File {
     }
 
     @Column(name = "NAME")
-    @JsonProperty("name")
     public String getName() {
         return name;
     }
 
     @Column(name = "FORMAT")
-    @JsonProperty("format")
     public String getFormat() {
         return format;
     }
 
     @Column(name = "FILE_SIZE")
-    @JsonProperty("size")
     public long getSize() {
         return size;
     }
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "STORAGE")
-    @JsonProperty("storage")
     public Storage getStorage() {
         return storage;
     }

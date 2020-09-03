@@ -7,7 +7,6 @@ import com.Lesson3.HW.Service.FileService;
 import com.Lesson3.HW.Service.StorageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 @org.springframework.stereotype.Controller
-@Transactional
 public class FileController {
 
     FileService fileService;

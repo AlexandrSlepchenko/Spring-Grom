@@ -5,7 +5,7 @@ import com.Lesson3.HW.Model.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @org.springframework.stereotype.Service
-public class StorageService implements Service<Storage> {
+public class StorageService {
     StorageDAO storageDAO;
 
     @Autowired
