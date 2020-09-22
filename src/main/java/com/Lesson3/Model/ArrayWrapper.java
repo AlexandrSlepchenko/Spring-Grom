@@ -1,4 +1,4 @@
-package com.Lesson3.HW.Model;
+package com.Lesson3.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

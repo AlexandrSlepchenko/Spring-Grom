@@ -1,7 +1,7 @@
-package com.Lesson3.HW.Service;
+package com.Lesson3.Service;
 
-import com.Lesson3.HW.DAO.StorageDAO;
-import com.Lesson3.HW.Model.Storage;
+import com.Lesson3.DAO.StorageDAO;
+import com.Lesson3.Model.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @org.springframework.stereotype.Service
@@ -26,6 +26,6 @@ public class StorageService {
     }
 
     public Storage findById(long id) {
-        return storageDAO.findById(id);
+        return (Storage) storageDAO.findById(id);
     }
 }

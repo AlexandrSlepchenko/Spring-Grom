@@ -1,4 +1,4 @@
-package com.Lesson3.HW.Model;
+package com.Lesson3.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,12 +15,12 @@ public class Storage {
     public Storage() {
     }
 
-//    public Storage(long id, String formatsSupported, String storageCountry, long storageMaxSize) {
-//        this.id = id;
-//        this.formatsSupported = formatsSupported;
-//        this.storageCountry = storageCountry;
-//        this.storageMaxSize = storageMaxSize;
-//    }
+    public Storage(long id, String formatsSupported, String storageCountry, long storageMaxSize) {
+        this.id = id;
+        this.formatsSupported = formatsSupported;
+        this.storageCountry = storageCountry;
+        this.storageMaxSize = storageMaxSize;
+    }
 
     @Id
     @SequenceGenerator(name = "S_SEQ", sequenceName = "STORAGE_SEQ", allocationSize = 1)
@@ -32,16 +32,19 @@ public class Storage {
     }
 
     @Column(name = "FORMAT_SUPPORTED")
+    @JsonProperty("formatsSupported")
     public String getFormatsSupported() {
         return formatsSupported;
     }
 
     @Column(name = "STORAGE_COUNTRY")
+    @JsonProperty("storageCountry")
     public String getStorageCountry() {
         return storageCountry;
     }
 
     @Column(name = "MAX_SIZE")
+    @JsonProperty("storageMaxSize")
     public long getStorageMaxSize() {
         return storageMaxSize;
     }

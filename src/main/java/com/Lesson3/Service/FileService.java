@@ -1,8 +1,8 @@
-package com.Lesson3.HW.Service;
+package com.Lesson3.Service;
 
-import com.Lesson3.HW.DAO.FileDAO;
-import com.Lesson3.HW.Model.File;
-import com.Lesson3.HW.Model.Storage;
+import com.Lesson3.DAO.FileDAO;
+import com.Lesson3.Model.File;
+import com.Lesson3.Model.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class FileService {
     }
 
     public File findById(long id) {
-        return fileDAO.findById(id);
+        return (File) fileDAO.findById(id);
     }
 
     public File put(Storage storage, File file) {
@@ -59,7 +59,7 @@ public class FileService {
     }
 
     public File transferFile(Storage storageTo, long id) {
-        return put(storageTo, fileDAO.findById(id));
+        return put(storageTo, findById(id));
     }
 
     private boolean validateSize(Storage storage, File file) {

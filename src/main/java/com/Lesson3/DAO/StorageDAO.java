@@ -1,17 +1,17 @@
-package com.Lesson3.HW.DAO;
+package com.Lesson3.DAO;
 
-import com.Lesson3.HW.Model.Storage;
-import com.MainDAO;
+import com.Lesson3.Model.Storage;
+import com.Lesson6.DAO.Impl.GeneralDAOImpl;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class StorageDAO extends MainDAO {
-//    public StorageDAO() {
-//        setClass(Storage.class);
-//    }
+public class StorageDAO extends GeneralDAOImpl {
+    public StorageDAO() {
+        setClass(Storage.class);
+    }
 
     public Storage save(Storage storage) {
         entityManager.persist(storage);
@@ -31,7 +31,7 @@ public class StorageDAO extends MainDAO {
         return entityManager.find(Storage.class, id);
     }
 
-    public List getAllItems() {
+    public List getAllStorages() {
         Query query = entityManager.createQuery("SELECT s FROM Storage s", Storage.class);
         return query.getResultList();
     }

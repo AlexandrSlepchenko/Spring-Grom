@@ -1,10 +1,10 @@
-package com.Lesson3.HW.Controller;
+package com.Lesson3.Controller;
 
-import com.Lesson3.HW.Model.ArrayWrapper;
-import com.Lesson3.HW.Model.File;
-import com.Lesson3.HW.Model.Storage;
-import com.Lesson3.HW.Service.FileService;
-import com.Lesson3.HW.Service.StorageService;
+import com.Lesson3.Model.ArrayWrapper;
+import com.Lesson3.Model.File;
+import com.Lesson3.Model.Storage;
+import com.Lesson3.Service.FileService;
+import com.Lesson3.Service.StorageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +35,7 @@ public class FileController {
             ArrayWrapper wrapper = arrayMapper(br);
             int[] array = wrapper.getArray();
             Storage storage = storageService.findById(array[0]);
-            File file = fileService.findById(array[1]);
+            com.Lesson3.Model.File file = fileService.findById(array[1]);
 
             fileService.put(storage, file);
 
@@ -84,7 +84,7 @@ public class FileController {
             ArrayWrapper wrapper = arrayMapper(br);
             int[] array = wrapper.getArray();
             Storage storage = storageService.findById(array[0]);
-            File file = fileService.findById(array[1]);
+            com.Lesson3.Model.File file = fileService.findById(array[1]);
 
             fileService.delete(storage, file);
         } catch (Exception e) {
@@ -105,7 +105,7 @@ public class FileController {
     @RequestMapping(method = RequestMethod.POST, value = "PostFile", produces = "text/plain")
     public @ResponseBody
     void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        File file;
+        com.Lesson3.Model.File file;
         try (BufferedReader br = req.getReader()) {
             file = mapper(br);
             fileService.save(file);
@@ -115,7 +115,7 @@ public class FileController {
     @RequestMapping(method = RequestMethod.PUT, value = "PutFile", produces = "text/plain")
     public @ResponseBody
     void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        File file;
+        com.Lesson3.Model.File file;
         try (BufferedReader br = req.getReader()) {
             file = mapper(br);
             fileService.update(file);
@@ -132,7 +132,7 @@ public class FileController {
         }
     }
 
-    public File mapper(BufferedReader br) throws IOException {
+    public com.Lesson3.Model.File mapper(BufferedReader br) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(br, File.class);
     }

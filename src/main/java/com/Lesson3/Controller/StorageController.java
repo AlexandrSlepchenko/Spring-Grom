@@ -1,7 +1,7 @@
-package com.Lesson3.HW.Controller;
+package com.Lesson3.Controller;
 
-import com.Lesson3.HW.Model.Storage;
-import com.Lesson3.HW.Service.StorageService;
+import com.Lesson3.Model.Storage;
+import com.Lesson3.Service.StorageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

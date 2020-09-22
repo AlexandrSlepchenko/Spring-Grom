@@ -1,15 +1,18 @@
 package com.Lesson2.HW2;
 
-import com.MainDAO;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
 @Repository
 @Transactional
-public class ItemDAO extends MainDAO {
+public class ItemDAO {
+    @PersistenceContext
+    public EntityManager entityManager;
 
     public Item save(Item item) {
         entityManager.persist(item);
