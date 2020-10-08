@@ -2,35 +2,18 @@ package com.Lesson3.DAO;
 
 import com.Lesson3.Model.File;
 import com.Lesson3.Model.Storage;
-import com.Lesson6.DAO.Impl.GeneralDAOImpl;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class FileDAO extends GeneralDAOImpl {
+@Transactional
+public class FileDAO extends GeneralRepositoryImpl<File> {
 
     public FileDAO() {
         setClass(File.class);
-    }
-
-    public File save(File file) {
-        entityManager.persist(file);
-        return file;
-    }
-
-    public File update(File file) {
-        entityManager.merge(file);
-        return file;
-    }
-
-    public void delete(Long id) {
-        entityManager.remove(findById(id));
-    }
-
-    public File findById(Long id) {
-        return entityManager.find(File.class, id);
     }
 
     public List getAllItems() {

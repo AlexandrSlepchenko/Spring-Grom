@@ -4,6 +4,7 @@ import com.Lesson3.DAO.FileDAO;
 import com.Lesson3.Model.File;
 import com.Lesson3.Model.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,8 +14,8 @@ public class FileService {
     FileDAO fileDAO;
 
     @Autowired
-    public FileService(FileDAO fileDAOImpl) {
-        this.fileDAO = fileDAOImpl;
+    public FileService(FileDAO fileDAO) {
+        this.fileDAO = fileDAO;
     }
 
     public File save(File file) {
@@ -30,7 +31,7 @@ public class FileService {
     }
 
     public File findById(long id) {
-        return (File) fileDAO.findById(id);
+        return fileDAO.findById(id);
     }
 
     public File put(Storage storage, File file) {

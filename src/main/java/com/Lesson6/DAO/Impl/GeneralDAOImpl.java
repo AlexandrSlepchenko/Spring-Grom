@@ -1,17 +1,21 @@
-package com.Lesson3.DAO;
+package com.Lesson6.DAO.Impl;
 
+import com.Lesson6.DAO.GeneralDAO;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 @Repository
-public class GeneralRepositoryImpl<T> implements GeneralRepository<T> {
+public class GeneralDAOImpl<T> implements GeneralDAO<T> {
 
-    private Class tClass;
+    @PersistenceContext
+    public EntityManager entityManager;
 
-    public void setClass(Class tClass) {
+    private Class<T> tClass;
+
+    public void setClass(Class<T> tClass) {
         this.tClass = tClass;
     }
 
@@ -19,31 +23,24 @@ public class GeneralRepositoryImpl<T> implements GeneralRepository<T> {
         return this.tClass;
     }
 
-    @PersistenceContext
-    public EntityManager entityManager;
-
     @Override
-    @Transactional
     public T save(T t) {
         entityManager.persist(t);
         return t;
     }
 
     @Override
-    @Transactional
     public T update(T t) {
         entityManager.merge(t);
         return t;
     }
 
     @Override
-    @Transactional
     public void delete(long id) {
-        entityManager.detach(findById(id));
+        entityManager.remove(findById(id));
     }
 
     @Override
-    @Transactional
     public T findById(long id) {
         return entityManager.find(getMyType(), id);
     }
